@@ -7,6 +7,7 @@ The code for this is in the chat_data_collection direcotry
 You will need to:
 1. Download the Telegram app and create an account - this will require a phone number.
 2. Get api_id, api_hash - to access Telegram's API
+
 https://my.telegram.org/ -> https://my.telegram.org/apps
 
 
