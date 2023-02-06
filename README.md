@@ -10,7 +10,7 @@ You will need to:
 1. Download the Telegram app and create an account - this will require a phone number.
 2. Get api_id, api_hash - to access Telegram's API
 
-## Save Cridentials in a .env file 
+## Save API cridentials in a .env file 
 You dont want to share the api keys with everyone. dotenv allows us to access private credentials from a secret file. These files dont show up in the file browsers. 
 
 1. pip install python-dotenv
@@ -23,10 +23,28 @@ TELEGRAM_API_HASH = "o898dnjdu23801kmcloewij"
 PHONE_NUM = "+19810023456"
 
 ```
+##  Add the .env file to .gitignore file 
+.gitignore allows us to list files which we want git to ignore. We want to ignore the .env file and not commit it to the Git repo. 
+note: ([gitignore.io]https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
+
+## Using Telethon to access the API
+([Telethon](https://docs.telethon.dev/en/stable/)) is a wrapper for the API in Python which makes it easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
+
+
+```
+# Example 
+with TelegramClient(session_name, api_id, api_hash) as client:
+        messages = client.get_messages(channel_input, limit=100)
+
+```
+
+Public channels/group chats have a unique id similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/s/"nytimes" the user name is nytimes.
 
 
 ### Collect all the messages 
-To collect all the messages from a public channel/group on Telegram, execute [this Python script](https://github.com/IshitaGopal/TelegramProject/blob/code_for_data_collection/code/collect_all_messages.py) in the terminal. You will need to provide a channel/group username as the input. The below example will collect all the messages from New York Time's telegram channel (viewable at t.me/nytimes) in json format. Each json file will contain a maximum of 10000 messages and will be suffixed by the message id of the last post collected. There will be multiple json files if there are more than 10000 messages to collect.
+To collect all the messages from a public channel or a public group on Telegram, execute collect_all_messages.py in the chat_data_collection/ folder [script](https://github.com/IshitaGopal/TelegramProject_23/blob/code_for_data_collection/code/collect_all_messages.py) in the terminal. 
+
+You will need to provide a channel/group username as the input. The below example will collect all the messages from New York Time's telegram channel (viewable at t.me/nytimes) in json format. Each json file will contain a maximum of 10000 messages and will be suffixed by the message id of the last post collected. There will be multiple json files if there are more than 10000 messages to collect.
      
 ```console
 foo@bar:~$ ./collect_all_messages.py nytimes
