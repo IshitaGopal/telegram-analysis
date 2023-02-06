@@ -33,7 +33,9 @@ PHONE_NUM = "+19810023456"
 note: [gitignore.io](https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
 
 ### Using Telethon to access the API
-1. [Telethon](https://docs.telethon.dev/en/stable/) is a wrapper for the API in Python which makes it easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
+1. [Telethon](https://docs.telethon.dev/en/stable/) is a Python library which is a wrapper for the Telegram API and makes it quite easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
+
+TelegramClient creates a client which makes requests on your behalf to the API in order and retrieves information (or changes something within the application) Avaialble (methods)[https://docs.telethon.dev/en/stable/quick-references/client-reference.html#messages] 
 
 ```
 # Example 
