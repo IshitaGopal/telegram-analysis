@@ -35,7 +35,7 @@ with TelegramClient(session, api_id, api_hash) as client:
 
 ```
 
-2. Public channels/group chats have a unique id similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/@nytimes. nytimes is the unique id we can use to fetch messages.
+2. Public channels/group chats have a unique usernames similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/@nytimes. nytimes is the unique userid we can use to fetch messages.
 
 ```
 # Example 
@@ -46,31 +46,41 @@ with TelegramClient(session, api_id, api_hash) as client:
 ```
 3. TelegramClient() creates session files - these files contain enough information for you to login without re-sending the code each time you make a request. 
 
-Other advantages of session files are that they also save "entities" that you’ve "seen" so that you can get information about a user or channel by just their ID.  "(chats and channels with their name and username, and users with the phone too) can be found in the session file, so that you can quickly access them."
+Other advantages of session file: they also save "input entities" that you’ve "seen" so that you can get information about a user or channel just by their numeric Ids. "(chats and channels with their name and username, and users with the phone too) can be found in the session file, so that you can quickly access them."
 
-note: An entity will refer to any User, Chat or Channel object that the API may return in response to certain methods.
+note: An entity can be any User, Chat or Channel object that the API may return in response to certain methods.
 
-For example, from the 100 messages we collected from nytimes, if there was a forwarded message, the API response will return an "ID" associated with the orignal channel/user/group. You can use this ID to get the username of the channel. Say its @bbcnews. We can then use other API methods to get desired information and use bbcnews as the input. 
-
+For example, from the 100 messages we collected from nytimes, if there was a forwarded message, the API response will return an "numeric id" associated with the orignal channel/user/group(if its public!). You can use this id to get the username of the channel. Say its @bbcnews. We can then use API methods using bbcnews as the input. 
 
 The session input requires us to provide the name of the session file. As explained in the docs, if we create a TelegramClient('anon') instance and connect, an anon.session file will be created in the working directory (In this case the inside code_for_data_collection/). We can also pass in absolute paths instead of strings. These files cache the access_hash associated with the entities’ ID
 
 
 ### Collect all the messages 
-To collect all the messages from a public channel or a public group on Telegram, execute collect_all_messages.py in the chat_data_collection/ folder [script](https://github.com/IshitaGopal/TelegramProject_23/blob/code_for_data_collection/code/collect_all_messages.py) in the terminal. 
+To collect all the messages from a public channel or a public group on Telegram:
 
-You will need to provide a channel/group username as the input. The below example will collect all the messages from New York Time's telegram channel (viewable at t.me/nytimes) in json format. Each json file will contain a maximum of 10000 messages and will be suffixed by the message id of the last post collected. There will be multiple json files if there are more than 10000 messages to collect.
-     
+1. execute collect_all_messages.py in the chat_data_collection/ folder [script](https://github.com/IshitaGopal/TelegramProject_23/blob/code_for_data_collection/code/collect_all_messages.py) in the terminal. 
+2. This will use code in Config.py and collect_all_messages.py files so make sure you have them.
+2. You will need to provide a channel/group username as the input argument. 
+3. The below example will collect all the messages from New York Time's telegram channel (viewable at t.me/nytimes) in json format. 
+
 ```console
 foo@bar:~$ ./collect_all_messages.py nytimes
 ```
-You will be prompted to input your phone number and autheticate by providing the code sent to you on Telegram. 
 
-The script first creates a folder with the same name as the channel and stores all  json files in it. The chanel folder is stored in the "chat_data" root directory (see config.py). E.g. path of a json file:
- 
- ```
-chat_data/nytimes/nytimes_1.json
+note: The first time, you will be prompted to input your phone number and autheticate by providing the code sent to you on Telegram app. 
+
+
+4. Each json file will contain a maximum of 10000 messages and will be suffixed by the message id of the last post collected. 
+5. There will be multiple json files if there are more than 10000 messages to collect.
+6. The script creates a folder with the same name as the channel and stores all  json files in it. 
+7. The chanel folder is stored within the "json_chat_data" (see config.py). E.g. path of a json file:
+
 ```
+json_chat_data/nytimes/nytimes_1.json
+```
+
+8. note: You can change to the directory names/session file names if you want in the Config.py file 
+
 
 The API Keys are stored as enviroment variables and are imported from config.py.
 
