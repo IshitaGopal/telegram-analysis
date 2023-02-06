@@ -29,6 +29,7 @@ PHONE_NUM = "+19810023456"
 ```
 ###  Add the .env file to .gitignore file 
 .gitignore allows us to list files which we want git to ignore. We want to ignore the .env file and not commit it to the Git repo. 
+
 note: [gitignore.io](https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
 
 ### Using Telethon to access the API
