@@ -7,6 +7,8 @@ The code for this is in the chat_data_collection direcotry
 You will need to:
 1. Download the Telegram app and create an account - this will require a phone number.
 2. Get api_id, api_hash - to access Telegram's API
+https://my.telegram.org/ -> https://my.telegram.org/apps
+
 
 ### Save API cridentials in a .env file 
 You dont want to share the api keys with everyone. dotenv allows us to access private credentials from a secret file. These files dont show up in the file browsers. 
@@ -58,8 +60,8 @@ The session input requires us to provide the name of the session file. As explai
 ### Collect all the messages 
 To collect all the messages from a public channel or a public group on Telegram:
 
-1. execute collect_all_messages.py in the chat_data_collection/ folder [script](https://github.com/IshitaGopal/TelegramProject_23/blob/code_for_data_collection/code/collect_all_messages.py) in the terminal. 
-2. This will use code in Config.py and collect_all_messages.py files so make sure you have them.
+1. execute collect_all_messages.py [script](https://github.com/IshitaGopal/TelegramProject_23/blob/code_for_data_collection/code/collect_all_messages.py) in the terminal. 
+2. This will use code in Config.py and collect_all_messages.py files so make sure you have both of them.
 2. You will need to provide a channel/group username as the input argument. 
 3. The below example will collect all the messages from New York Time's telegram channel (viewable at t.me/nytimes) in json format. 
 
