@@ -1,7 +1,5 @@
 # TelegramProject
 
-# Tutorials / Notebooks / Code
-
 ## Data collection from Telegram 
 The code for this is in the chat_data_collection direcotry 
 
@@ -10,7 +8,7 @@ You will need to:
 1. Download the Telegram app and create an account - this will require a phone number.
 2. Get api_id, api_hash - to access Telegram's API
 
-## Save API cridentials in a .env file 
+### Save API cridentials in a .env file 
 You dont want to share the api keys with everyone. dotenv allows us to access private credentials from a secret file. These files dont show up in the file browsers. 
 
 1. pip install python-dotenv
@@ -23,13 +21,12 @@ TELEGRAM_API_HASH = "o898dnjdu23801kmcloewij"
 PHONE_NUM = "+19810023456"
 
 ```
-##  Add the .env file to .gitignore file 
+###  Add the .env file to .gitignore file 
 .gitignore allows us to list files which we want git to ignore. We want to ignore the .env file and not commit it to the Git repo. 
-note: ([gitignore.io]https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
+note: [gitignore.io]https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
 
-## Using Telethon to access the API
-([Telethon](https://docs.telethon.dev/en/stable/)) is a wrapper for the API in Python which makes it easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
-
+### Using Telethon to access the API
+[Telethon](https://docs.telethon.dev/en/stable/) is a wrapper for the API in Python which makes it easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
 
 ```
 # Example 
@@ -38,7 +35,15 @@ with TelegramClient(session_name, api_id, api_hash) as client:
 
 ```
 
-Public channels/group chats have a unique id similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/s/"nytimes" the user name is nytimes.
+Public channels/group chats have a unique id similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/s/nytimes. nytimes is the unique id we can use to fetch messages.
+
+```
+# Example 
+channel_input = "nytimes"
+with TelegramClient(session_name, api_id, api_hash) as client:
+        messages = client.get_messages(channel_input, limit=100)
+
+```
 
 
 ### Collect all the messages 
