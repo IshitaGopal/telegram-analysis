@@ -39,6 +39,8 @@ TelegramClient creates a client which makes requests on your behalf to the API i
 
 ```
 # Example 
+from telethon.sync import TelegramClient
+
 with TelegramClient(session, api_id, api_hash) as client:
         messages = client.get_messages(channel_input, limit=100)
 
