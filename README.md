@@ -12,9 +12,12 @@ https://my.telegram.org/ -> https://my.telegram.org/apps
 
 
 ### Save API cridentials in a .env file 
-You dont want to share the api keys with everyone. dotenv allows us to access private credentials from a secret file. These files dont show up in the file browsers. 
+You dont want to share the api keys with everyone. dotenv allows us to access private credentials from a secret file. This file has the name ".env". These files dont show up in the file browsers. 
 
-1. pip install python-dotenv
+1. 
+```
+pip install python-dotenv
+```
 2. create a file with name .env 
 3. put your API key and hash in the following format
 
