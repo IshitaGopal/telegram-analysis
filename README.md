@@ -23,27 +23,37 @@ PHONE_NUM = "+19810023456"
 ```
 ###  Add the .env file to .gitignore file 
 .gitignore allows us to list files which we want git to ignore. We want to ignore the .env file and not commit it to the Git repo. 
-note: [gitignore.io]https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
+note: [gitignore.io](https://www.toptal.com/developers/gitignore/) is a nice resource for automatically generating .gitignore with files which are usually ignored/
 
 ### Using Telethon to access the API
-[Telethon](https://docs.telethon.dev/en/stable/) is a wrapper for the API in Python which makes it easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
+1. [Telethon](https://docs.telethon.dev/en/stable/) is a wrapper for the API in Python which makes it easy to interact with Telegram's API. I use the get_messages() method to collect messages which takes the channel/group id as an input. 
 
 ```
 # Example 
-with TelegramClient(session_name, api_id, api_hash) as client:
+with TelegramClient(session, api_id, api_hash) as client:
         messages = client.get_messages(channel_input, limit=100)
 
 ```
 
-Public channels/group chats have a unique id similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/s/nytimes. nytimes is the unique id we can use to fetch messages.
+2. Public channels/group chats have a unique id similar to @username in Twitter. For example, the telegram channel of the NYT can be found here: https://telegram.me/@nytimes. nytimes is the unique id we can use to fetch messages.
 
 ```
 # Example 
 channel_input = "nytimes"
-with TelegramClient(session_name, api_id, api_hash) as client:
+with TelegramClient(session, api_id, api_hash) as client:
         messages = client.get_messages(channel_input, limit=100)
 
 ```
+3. TelegramClient() creates session files - these files contain enough information for you to login without re-sending the code each time you make a request. 
+
+Other advantages of session files are that they also save "entities" that you’ve "seen" so that you can get information about a user or channel by just their ID.  "(chats and channels with their name and username, and users with the phone too) can be found in the session file, so that you can quickly access them."
+
+note: An entity will refer to any User, Chat or Channel object that the API may return in response to certain methods.
+
+For example, from the 100 messages we collected from nytimes, if there was a forwarded message, the API response will return an "ID" associated with the orignal channel/user/group. You can use this ID to get the username of the channel. Say its @bbcnews. We can then use other API methods to get desired information and use bbcnews as the input. 
+
+
+The session input requires us to provide the name of the session file. As explained in the docs, if we create a TelegramClient('anon') instance and connect, an anon.session file will be created in the working directory (In this case the inside code_for_data_collection/). We can also pass in absolute paths instead of strings. These files cache the access_hash associated with the entities’ ID
 
 
 ### Collect all the messages 
