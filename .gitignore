@@ -1,4 +1,6 @@
 analysis/processed_data/
+analysis/data/
+analysis/plots/
 chat_data_collection/anon.session
 chat_data_collection/processed_data/
 chat_data_collection/json_chat_data/
