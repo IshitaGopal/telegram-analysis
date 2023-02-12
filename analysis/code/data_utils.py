@@ -6,11 +6,9 @@ import string
 
 nltk.download("stopwords")
 from nltk.corpus import stopwords
-
 from nltk.stem.snowball import SnowballStemmer
 
 stemmer = SnowballStemmer("russian")
-
 STOPWORDS = stopwords.words("russian")
 
 
@@ -21,7 +19,6 @@ def clean_text(text):
     text = remove_punctuation(text)
     text = re.sub(r"\W+", " ", text)
     text = " ".join([word for word in text.split(" ") if word not in STOPWORDS])
-    text = " ".join([stemmer.stem(word) for word in text.split(" ")])
     text = remove_white_spaces(text)
     return text
 
