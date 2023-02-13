@@ -12,6 +12,7 @@ class Config:
     session_name = "anon.session"
 
     json_chat_dir = "json_chat_data"
+    json_channel_dir = "json_channel_data"
     processed_data_dir = "processed_data"
     chat_dfs_dir = "chat_dfs"
     fwds_master_file = "fwds_master.pkl"
