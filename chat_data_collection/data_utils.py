@@ -5,6 +5,7 @@ import os
 import re
 from telethon.sync import TelegramClient
 from telethon import errors
+from config import Config
 
 # write to json
 def write_json(data, output_dir, output_subdir, output_file):

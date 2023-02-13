@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-from genericpath import exists
 from telethon.sync import TelegramClient
-import json
 import argparse
 import os
 import time
-from config import Config, write_json
+from config import Config
+from data_utils import write_json
 from pathlib import Path
 
 
