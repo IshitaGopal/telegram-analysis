@@ -12,7 +12,7 @@ from pathlib import Path
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--channel_input", type=str, required=True)
-    parser.add_argument("--type", type=str, required=True)
+    # parser.add_argument("--type", type=str, required=True)
 
     args = parser.parse_args()
 
@@ -21,11 +21,12 @@ if __name__ == "__main__":
     channel_input = args.channel_input
 
     # Output dir -  json_chat_data or json_channel_data based on type of input
-    if type == "group chat":
-        output_dir = Config.json_chat_dir
-    else:
-        output_dir = Config.json_channel_dir
+    # if type == "group chat":
+    #     output_dir = Config.json_chat_dir
+    # else:
+    #     output_dir = Config.json_channel_dir
 
+    output_dir = "new_data"
     Path(os.path.join(output_dir, channel_input)).mkdir(parents=True, exist_ok=True)
     # Connect to the API
     with TelegramClient(Config.session_name, Config.api_id, Config.api_hash) as client:

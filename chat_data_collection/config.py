@@ -11,8 +11,12 @@ class Config:
     phone = os.getenv("PHONE_NUM")
     session_name = "anon.session"
 
-    json_chat_dir = "json_chat_data"
+    json_for_analysis = "json_chat_analysis"
     json_channel_dir = "json_channel_data"
     processed_data_dir = "processed_data"
     chat_dfs_dir = "chat_dfs"
+    chat_dfs_csv_dir = "chat_dfs_csv"
     fwds_master_file = "fwds_master.pkl"
+
+    analysis_min_date = "2020-08-09"
+    analysis_max_date = "2021-04-01"

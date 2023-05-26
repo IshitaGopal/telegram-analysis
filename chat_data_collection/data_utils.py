@@ -20,6 +20,24 @@ def get_cleaned_dataframe(df):
     """takes in a dataframe as input and
     returns a dataframe with defined fields"""
 
+    # rename the date column to created_at
+    # convert to belarusian time
+    df.rename(columns={"date": "created_at"}, inplace=True)
+    df["created_at"] = pd.to_datetime(df["created_at"])
+    df["date_minsk"] = df.created_at.dt.tz_convert("Europe/Minsk").dt.strftime(
+        "%Y-%m-%d"
+    )
+    df["date_minsk"] = pd.to_datetime(df["date_minsk"])
+
+    # filter by date
+    date_range = [
+        pd.to_datetime(Config.analysis_min_date),
+        pd.to_datetime(Config.analysis_max_date),
+    ]
+    df = df[
+        (df["date_minsk"] >= date_range[0]) & (df["date_minsk"] <= date_range[1])
+    ].reset_index(drop=True)
+
     # Add indictors for nans
     df["has_from_id"] = df.from_id.notna()
     df["is_fwd"] = df.fwd_from.notna()

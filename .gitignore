@@ -1,10 +1,23 @@
 analysis/processed_data/
 analysis/data/
 analysis/plots/
+analysis/code_clean_data/Volumeplots_fig_1.ipynb
+analysis/code_clean_data/make_threads.ipynb
 chat_data_collection/anon.session
 chat_data_collection/processed_data/
 chat_data_collection/json_chat_data/
 chat_data_collection/json_channel_data/
+chat_data_collection/json_chat_analysis/
+chat_data_collection/new_data/
+chat_data_collection/big_channels_json/
+chat_data_collection/clean
+chat_data_collection/pipe
+paper
+drafts
+presentations
+
+chat_data_collection/make_threads.ipynb
+
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,python,visualstudiocode,windows
