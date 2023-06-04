@@ -1,6 +1,7 @@
 analysis/processed_data/
 analysis/data/
 analysis/plots/
+analysis/code_analysis/rough.R
 analysis/code_clean_data/Volumeplots_fig_1.ipynb
 analysis/code_clean_data/make_threads.ipynb
 chat_data_collection/anon.session
